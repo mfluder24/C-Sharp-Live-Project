@@ -106,6 +106,7 @@ I was also asked to create a functional search bar feature on the Index page, so
 
 * **Details & Delete Pages:**  
 Continuing to do some front end work, I applied some basic styling to both the Details and Delete pages to make them both visually appealing, easy to use, and in the colour theme requested by the client. I continued to make use of Bootstrap, Razor, HTML, CSS, and Font Awesome icons to style these pages. 
+
 ![Alt Text](https://i.imgur.com/6he0rsz.gif) 
 ![Alt Text](https://i.imgur.com/7YO7m6V.gif) 
 
