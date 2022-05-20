@@ -47,7 +47,7 @@ When the RentalItem model was created, it included a byte array used for convert
             byte[] bytes = rentalItem.ItemPhoto;
             return File(bytes, "image/jpeg");
         }
-``` 
+```
 I also fixed an error thrown on the Edit page when attempting to update an item without uploading a new photo. The scaffolded Edit page did not have access to the original byte[]; I corrected this by saving the original byte[] as a variable via TempData, and adjusting the Edit method with if statements with parameters regarding if a new photo had been added or not.  
 
 ```
@@ -76,11 +76,38 @@ RentalItem origPhoto = TempData["item"] == null ? db.RentalItems.Find(rentalItem
 * **Index Page:**  
 I was tasked with more front end work on the Index page, and utilised Bootstrap to create cards for each RentalItem that displayed the uploaded photo, name, date checked out, and expected return date on the card. The Edit and Delete links were accessible by hovering over the item photo and clicking on the apprpriate Font Awesome icon. Clicking the card description would link the user to the full Details page of the individual item. Everything was created and styling using Bootstrap, Razor, HTML, and CSS.  
 ![Alt Text](https://i.imgur.com/glqLj7v.gif)  
-I was also asked to create a functional search bar feature on the Index page, so that users could search for a particular item by Name, or a matching word/phrase in the item Description.  
+I was also asked to create a functional search bar feature on the Index page, so that users could search for a particular item by Name, or a matching word/phrase in the item Description.
+```
+ @using (Html.BeginForm("Index", "RentalItems", FormMethod.Get))
+    {
+   
+        @Html.TextBox("srcString")
+        <input type="submit" value="Search" class="RentalItem-Index--CreateBtn cms-bg-secondary" />
+    }
+    
+    ---
+    
+ public ActionResult Index(string srcString)
+ {
+   if(srcString == null) // If no entries in search bar, displays all items
+   {
+     return View(db.RentalItems.ToList());
+   }
+            
+   else // Searches for user input matching item name or item description
+   {
+    return View(db.RentalItems.Where(i => i.Item.Contains(srcString) || i.ItemDescription.Contains(srcString)).ToList());
+   }
+            
+}
+    
+```
 ![Alt Text](https://i.imgur.com/O4zB4Wb.gif)  
 
 * **Details & Delete Pages:**  
-Continuing to do some front end work, I applied some basic styling to both the Details and Delete pages to make them both visually appealing, easy to use, and in the colour theme requested by the client. I continued to make use of Bootstrap, Razor, HTML, CSS, and Font Awesome icons to style these pages.  
+Continuing to do some front end work, I applied some basic styling to both the Details and Delete pages to make them both visually appealing, easy to use, and in the colour theme requested by the client. I continued to make use of Bootstrap, Razor, HTML, CSS, and Font Awesome icons to style these pages. 
+![Alt Text](https://i.imgur.com/6he0rsz.gif) 
+![Alt Text](https://i.imgur.com/7YO7m6V.gif) 
 
 * [Index](#index)
 
