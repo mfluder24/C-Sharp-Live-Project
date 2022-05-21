@@ -19,7 +19,18 @@ I began by cloning the existing project codebase onto my computer via Visual Stu
 * [Index](#index)
 
 # Rental Item Model and CRUD Functionality
-In my following assigned story, I began work on creating the Entity Model called RentalItem. I created a RentalItem class, following a supplied schema, and added the DbSet to the context to save it to the database. From there, I created the RentalItems Controller and scaffolded the CRUD pages.
+In my following assigned story, I began work on creating the Entity Model called RentalItem. I created a RentalItem class, following a supplied schema, and added the DbSet to the context to save it to the database. From there, I created the RentalItems Controller and scaffolded the CRUD pages.  
+```
+public class RentalItem
+    {
+        public int RentalItemId { get; set; }
+        public string Item { get; set; }
+        public string ItemDescription { get; set; }
+        public DateTime PickupDate { get; set; }
+        public DateTime? ReturnDate { get; set; }
+        public byte[] ItemPhoto { get; set; }
+    }
+```
 
 * **Create & Edit Pages:**  
 After they had been scaffolded and rendered operational, I began to do some front end work on both the Create and Edit pages to make them more visually appealing, accessible, and appropriately themed to match the rest of the website. This involved utilising Bootstrap 4, Razor, HTML, and CSS to create functional and beautiful forms in the colour theme provided by the client.  
@@ -114,7 +125,30 @@ Continuing to do some front end work, I applied some basic styling to both the D
 
 
 # Rental Model and CRUD Functionality 
-In this story, I created a new Entity Model, Rental, which followed a schema and utilised inheritance. Referencing the schema, I first created the Rental class, which had two child classes called RentalEquipment and RentalRoom. I then added the DbSet to the context, updated the database, and scaffolded the CRUD pages.
+In this story, I created a new Entity Model, Rental, which followed a schema and utilised inheritance. Referencing the schema, I first created the Rental class, which had two child classes called RentalEquipment and RentalRoom. I then added the DbSet to the context, updated the database, and scaffolded the CRUD pages.  
+```
+ public class Rental
+    {
+        public int RentalId { get; set; }
+        public string RentalName { get; set; }
+        public int RentalCost { get; set; }
+        public string FlawsAndDamages { get; set; }
+    }
+
+    public class RentalEquipment : Rental
+    {
+        public bool ChokingHazard { get; set; }
+        public bool SuffocationHazard { get; set; }
+        public int PurchasePrice { get; set; }
+    }
+
+    public class RentalRoom : Rental
+    {
+        public int RoomNumber { get; set; }
+        public int SquareFootage { get; set; }
+        public int MaxOccupancy { get; set; }
+    }
+```
 
 * [Index](#index)  
 
